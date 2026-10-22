@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-hero section-shell" id="top"><p class="eyebrow">THE WHOLE COLLECTION / 001—004</p><h1>THE <em>CATALOG.</em></h1><p>Temukan kaos yang cocok dengan playlist dan kepribadianmu.</p></section>
+<section class="section-shell catalog-section" id="katalog">
+  <form class="catalog-tools" method="get" action="{{ url_for('produk') }}">
+    <label class="search-box"><span>⌕</span><input type="search" name="q" value="{{ q }}" placeholder="Cari band atau nama desain..." aria-label="Cari produk"><button type="submit">CARI ↗</button></label>
+    <div class="filter-wrap"><label for="kategori">FILTER</label><select name="kategori" id="kategori" onchange="this.form.submit()"><option {{ 'selected' if category == 'Semua' else '' }}>Semua</option><option {{ 'selected' if category == 'Classic' else '' }}>Classic</option><option {{ 'selected' if category == 'Graphic' else '' }}>Graphic</option><option {{ 'selected' if category == 'Essential' else '' }}>Essential</option></select></div>
+  </form>
+  <div class="catalog-count"><span>SHOWING {{ products|length }} ITEMS</span><span>DESIGNED FOR MUSIC PEOPLE ↘</span></div>
+  {% if products %}
+  <div class="product-grid catalog-grid">
+    {% for product in products %}
+    <article class="product-card">
+      <div class="product-image"><span class="product-tag">{{ product.tag }}</span><img src="{{ url_for('static', filename='images/' + product.image) }}" alt="Desain kaos {{ product.band }}" loading="lazy"><span class="image-arrow">↗</span></div>
+      <div class="product-info"><div><p class="product-band">{{ product.band }}</p><h3>{{ product.name }}</h3></div><strong>{{ product.price|rupiah }}</strong></div>
+      <p class="product-description">{{ product.description }}</p>
+      <div class="product-bottom"><span>SIZE: {{ product.size }}</span><button class="add-cart" data-product="{{ product.name }}" type="button">+ ADD</button></div>
+    </article>
+    {% endfor %}
+  </div>
+  {% else %}<div class="empty-state"><span>:(</span><h2>Belum ketemu.</h2><p>Coba kata kunci atau kategori yang berbeda.</p><a class="button button-dark" href="{{ url_for('produk') }}">RESET FILTER</a></div>{% endif %}
+</section>
+{% endblock %}

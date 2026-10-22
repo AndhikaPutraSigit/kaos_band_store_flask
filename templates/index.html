@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero section-shell" id="top">
+  <div class="hero-copy">
+    <p class="eyebrow"><span class="live-dot"></span> INDEPENDENT MUSIC GOODS / EST. 2026</p>
+    <h1>WEAR YOUR<br><em>LOUD</em> SIDE<span class="hero-star">✳</span></h1>
+    <p class="hero-desc">Kaos band pilihan untuk yang hidupnya punya soundtrack sendiri. Temukan rilisan Rumah Sakit, The Jeblogs, The Sigit, dan Colorcode.</p>
+    <div class="hero-actions"><a class="button button-dark" href="{{ url_for('produk') }}">JELAJAHI KATALOG <span>↗</span></a><a class="text-link" href="{{ url_for('profil') }}">KENALAN DULU <span>→</span></a></div>
+    <div class="hero-meta"><div><strong>04</strong><span>CURATED DESIGNS</span></div><div><strong>01</strong><span>SHARED CULTURE</span></div><div><strong>∞</strong><span>LOUD MEMORIES</span></div></div>
+  </div>
+  <div class="hero-art">
+    <div class="art-stamp">NO<br>SKIPS<br>JUST<br>RIFFS</div>
+    <div class="hero-shirt"><img src="{{ url_for('static', filename='images/the-sigit.png') }}" alt="Mockup desain kaos The Sigit"></div>
+    <div class="hero-note">VOL. 01 — LOCAL<br>SCENE ESSENTIALS</div>
+    <span class="hero-cross">✳</span>
+  </div>
+</section>
+<div class="ticker" aria-label="Kategori toko"><div class="ticker-track"><span>BAND TEES</span><b>✳</b><span>LOCAL SCENE</span><b>✳</b><span>GOOD MUSIC ONLY</span><b>✳</b><span>WEAR IT LOUD</span><b>✳</b><span>BAND TEES</span><b>✳</b><span>LOCAL SCENE</span><b>✳</b><span>GOOD MUSIC ONLY</span><b>✳</b><span>WEAR IT LOUD</span><b>✳</b></div></div>
+<section class="section-shell product-section" id="featured">
+  <div class="section-heading"><div><p class="eyebrow">THE STARTING LINEUP / 001—004</p><h2>PICK YOUR <em>UNIFORM.</em></h2></div><a class="text-link" href="{{ url_for('produk') }}">SEMUA PRODUK <span>↗</span></a></div>
+  <div class="product-grid">
+    {% for product in featured %}
+    <article class="product-card">
+      <a class="product-image" href="{{ url_for('produk') }}"><span class="product-tag">{{ product.tag }}</span><img src="{{ url_for('static', filename='images/' + product.image) }}" alt="Desain kaos {{ product.band }}" loading="lazy"><span class="image-arrow">↗</span></a>
+      <div class="product-info"><div><p class="product-band">{{ product.band }}</p><h3>{{ product.name }}</h3></div><strong>{{ product.price|rupiah }}</strong></div>
+      <div class="product-bottom"><span>{{ product.category }} / UNISEX</span><button class="add-cart" data-product="{{ product.name }}" type="button" aria-label="Tambah {{ product.name }} ke keranjang">+ ADD</button></div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+<section class="manifesto">
+  <div class="manifesto-number">D/01</div><p class="eyebrow">A SMALL NOTE FROM US</p><h2>BUKAN CUMA BAJU.<br><em>INI IDENTITAS.</em></h2><p class="manifesto-desc">Kami percaya musik bukan cuma didengar, tapi juga dibawa. Distorsi mengkurasi kaos bertema band dan kultur musik untuk menemani hari-hari kamu.</p><a class="button button-light" href="{{ url_for('profil') }}">CERITA KAMI <span>↗</span></a><span class="manifesto-scribble">TURN IT UP!</span>
+</section>
+<section class="section-shell values-section"><div class="section-heading"><div><p class="eyebrow">WHY DISTORSI?</p><h2>GOOD TASTE.<br><em>NO GATEKEEPING.</em></h2></div><p class="values-intro">Untuk gig pertama, album favorit, atau sekadar jalan sore sambil dengerin track yang sama berulang kali.</p></div>
+  <div class="values-grid"><div><span>01 / CURATED</span><h3>Pilihan yang punya cerita.</h3><p>Desain dipilih dengan semangat kultur musik dan karakter tiap band.</p></div><div><span>02 / EVERYDAY</span><h3>Nyaman dipakai ke mana saja.</h3><p>Potongan unisex dan ukuran yang bisa kamu cek di detail katalog.</p></div><div><span>03 / COMMUNITY</span><h3>Musik menyatukan kita.</h3><p>Ruang kecil buat penggemar band, gig, dan skena lokal.</p></div></div>
+</section>
+{% endblock %}

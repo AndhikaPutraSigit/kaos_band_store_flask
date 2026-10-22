@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-hero section-shell" id="top"><p class="eyebrow">CATALOG MANAGEMENT / ADMIN DEMO</p><h1>ADD A <em>NEW DROP.</em></h1><p>Tambahkan item contoh ke katalog toko. Data tersimpan sementara selama aplikasi berjalan.</p></section>
+<section class="section-shell form-layout">
+  <div class="form-aside"><span class="form-icon">✳</span><p class="eyebrow">BEHIND THE SCENE</p><h2>Every tee<br>has a <em>story.</em></h2><p>Form ini menjadi contoh fitur manajemen data pada prototipe sistem informasi e-commerce.</p><div class="form-aside-line">DISTORSI / CATALOG CMS</div></div>
+  <form class="product-form" method="post" enctype="multipart/form-data" action="{{ url_for('tambah_produk') }}">
+    <div class="form-title"><span>FORM 001</span><span>* WAJIB DIISI</span></div>
+    <label>Nama produk <span>*</span><input type="text" name="name" placeholder="Contoh: The Sigit — Midnight Run" required maxlength="100"></label>
+    <label>Nama band / artis <span>*</span><input type="text" name="band" placeholder="Nama band" required maxlength="80"></label>
+    <div class="form-row"><label>Kategori <span>*</span><select name="category" required><option value="Classic">Classic</option><option value="Graphic">Graphic</option><option value="Essential">Essential</option></select></label><label>Harga (Rupiah) <span>*</span><input type="number" name="price" min="1000" step="1000" placeholder="185000" required></label></div>
+    <label>Ukuran tersedia<input type="text" name="size" value="S, M, L, XL" placeholder="S, M, L, XL"></label>
+    <label>Gambar produk <span>(opsional)</span><input type="file" name="image" accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp"><small>Pilih gambar berformat PNG, JPG, JPEG, atau WEBP. Jika dikosongkan, gambar bawaan katalog akan digunakan.</small></label>
+    <label>Deskripsi produk<textarea name="description" rows="4" placeholder="Ceritakan karakter desain kaos ini..."></textarea></label>
+    <button class="button button-dark form-submit" type="submit">SIMPAN KE KATALOG <span>↗</span></button>
+    <p class="form-footnote">Catatan: data produk masih menggunakan penyimpanan memori, belum database.</p>
+  </form>
+</section>
+{% endblock %}
